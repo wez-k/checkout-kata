@@ -1,10 +1,16 @@
 import React from 'react';
 import { samplePricingRules } from '@/data';
 import { useCheckout } from '@/hooks';
-import { CheckoutHeader, ItemScanner, ShoppingCart } from './sections';
+import {
+  CheckoutHeader,
+  ItemScanner,
+  ShoppingCart,
+  PricingRules,
+  TotalDisplay,
+} from './sections';
 
 export const Checkout: React.FC = () => {
-  const { items, addItem, removeItem, calculateItemTotal, getAvailableSkus } =
+  const { items, addItem, removeItem, calculateItemTotal, getAvailableSkus, total, runningTotal } =
     useCheckout({ pricingRules: samplePricingRules });
 
   return (
@@ -19,6 +25,12 @@ export const Checkout: React.FC = () => {
           onRemoveItem={removeItem}
           calculateItemTotal={calculateItemTotal}
         />
+
+        <PricingRules rules={samplePricingRules} />
+      </div>
+
+      <div className="flex justify-center pt-10">
+        <TotalDisplay runningTotal={runningTotal} finalTotal={total} />
       </div>
     </div>
   );
