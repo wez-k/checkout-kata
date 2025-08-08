@@ -85,9 +85,6 @@ npm run build
 - **Scalable**: Modular architecture allows independent scaling
 - **Cost Optimized**: No server dependencies
 
-## 📝 Time Estimate
-
-**~8-10 hours total development time**
 
 ## 🔮 Future Enhancements
 
@@ -99,9 +96,5 @@ If I had more time, I would add:
 - Enhanced accessibility
 - Backend integration
 - Advanced pricing features
-
-## 📄 Documentation
-
-For detailed technical documentation, see [DOCUMENTATION.md](./DOCUMENTATION.md)
 
 ---
