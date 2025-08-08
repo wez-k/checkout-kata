@@ -7,18 +7,26 @@ export const ItemScanner: React.FC<ItemScannerProps> = ({
   onScanItem,
   availableSkus,
 }) => {
-  const [selectedSku, setSelectedSku] = useState<string>('');
+  const [inputValue, setInputValue] = useState<string>('');
 
-  const handleScanItem = () => {
-    if (selectedSku) {
-      onScanItem(selectedSku);
-      setSelectedSku('');
+  const handleScanItems = () => {
+    if (inputValue.trim()) {
+      const skus = inputValue
+        .split(',')
+        .map(sku => sku.trim().toUpperCase())
+        .filter(sku => sku && availableSkus.includes(sku));
+
+      skus.forEach(sku => {
+        onScanItem(sku);
+      });
+
+      setInputValue('');
     }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === 'Enter') {
-      handleScanItem();
+      handleScanItems();
     }
   };
 
@@ -27,16 +35,15 @@ export const ItemScanner: React.FC<ItemScannerProps> = ({
       <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8 px-1 sm:px-2">
         <input
           type="text"
-          value={selectedSku}
-          onChange={e => setSelectedSku(e.target.value.toUpperCase())}
+          value={inputValue}
+          onChange={e => setInputValue(e.target.value.toUpperCase())}
           onKeyDown={handleKeyDown}
           placeholder="Enter SKU (A, B, C, D)"
-          maxLength={1}
           className="w-full px-4 sm:px-6 py-4 sm:py-5 border-2 border-gray-200 rounded-xl sm:rounded-2xl text-lg sm:text-xl font-semibold text-center uppercase transition-all duration-300 bg-gray-50 focus:border-blue-500 focus:bg-white focus:shadow-lg focus:scale-[1.02] focus:outline-none"
         />
         <Button
-          onClick={handleScanItem}
-          disabled={!selectedSku}
+          onClick={handleScanItems}
+          disabled={!inputValue.trim()}
           variant="primary"
           size="lg"
           className="w-full"

@@ -16,25 +16,30 @@ export const useCheckout = ({ pricingRules }: UseCheckoutProps) => {
 
   const addItem = useCallback(
     (sku: string) => {
-      const updatedItems = checkoutService.addItem(items, sku);
-      setItems(updatedItems);
-
-      // Calculate running total after adding item
-      const newRunningTotal = checkoutService.calculateTotal(updatedItems);
-      setRunningTotal(newRunningTotal);
+      setItems(currentItems => {
+        const updatedItems = checkoutService.addItem(currentItems, sku);
+        
+        const newRunningTotal = checkoutService.calculateTotal(updatedItems);
+        setRunningTotal(newRunningTotal);
+        
+        return updatedItems;
+      });
     },
-    [items, checkoutService]
+    [checkoutService]
   );
 
   const removeItem = useCallback(
     (sku: string) => {
-      const updatedItems = checkoutService.removeItem(items, sku);
-      setItems(updatedItems);
-
-      const newRunningTotal = checkoutService.calculateTotal(updatedItems);
-      setRunningTotal(newRunningTotal);
+      setItems(currentItems => {
+        const updatedItems = checkoutService.removeItem(currentItems, sku);
+        
+        const newRunningTotal = checkoutService.calculateTotal(updatedItems);
+        setRunningTotal(newRunningTotal);
+        
+        return updatedItems;
+      });
     },
-    [items, checkoutService]
+    [checkoutService]
   );
 
   const calculateItemTotal = useCallback(

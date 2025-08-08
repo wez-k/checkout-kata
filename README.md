@@ -1,69 +1,107 @@
-# React + TypeScript + Vite
+# CDL Checkout System Kata
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive checkout system built with **TypeScript**, **React**, and **Tailwind CSS** that handles dynamic pricing schemes including special bulk pricing rules.
 
-Currently, two official plugins are available:
+## 🎯 Kata Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### ✅ Core Features
 
-## Expanding the ESLint configuration
+- **Dynamic Pricing Rules**: Support for individual and special bulk pricing
+  - Item A: 50p each, 3 for £1.30
+  - Item B: 30p each, 2 for 45p
+  - Item C: 20p each
+  - Item D: 15p each
+- **Real-time Calculations**: Instant running total updates
+- **Flexible Input Order**: Items can be scanned in any order
+- **SKU System**: Uses letters A, B, C, D as Stock Keeping Units
+- **Simple UI**: Clean, intuitive interface for item input and total display
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### ✅ Technical Requirements
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **JavaScript/TypeScript**: Full TypeScript implementation
+- **React**: Modern React 19 with hooks
+- **AWS-First Design**: Modular architecture ready for serverless deployment
+- **Simple Solution**: No databases or servers, minimal boilerplate
+- **Public Repository**: Ready for GitHub deployment
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🚀 Quick Start
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🏗️ Architecture
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+**Clean Architecture** with clear separation of concerns:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Components**: React UI components
+- **Services**: Business logic (`CheckoutService`)
+- **Hooks**: State management (`useCheckout`)
+- **Types**: TypeScript interfaces
+- **Data**: Pricing rules configuration
+
+## 🎨 Features
+
+- **Responsive Design**: Mobile-first with Tailwind CSS
+- **Real-time Totals**: Running and final totals update instantly
+- **Quick Scan**: Buttons for common items (A, B, C, D)
+- **Keyboard Support**: Enter key to scan items
+- **Modern UI**: Beautiful gradient design with animations
+
+## 📊 Example Usage
+
+1. **Scan Item A**: Enter "A" and click "Scan Item" or use quick scan button
+2. **Add Multiple Items**: Scan A, B, A, A (any order)
+3. **View Special Pricing**: Item A will show 3 for £1.30 applied
+4. **Running Total**: Updates after each scan
+5. **Final Total**: Shows total with all special pricing applied
+
+## 🔧 Key Decisions
+
+### Technology Choices
+
+- **React 19 + TypeScript**: Type safety and modern development experience
+- **Tailwind CSS**: Rapid development and consistent design
+- **Vite**: Fast development and optimized builds
+
+### Architecture Decisions
+
+- **Service Layer**: Encapsulated business logic for testability
+- **Custom Hooks**: Reusable state management
+- **Component Composition**: Small, focused components
+- **Type Safety**: Full TypeScript coverage
+
+## 🚀 AWS Considerations
+
+- **Serverless Ready**: Components can be deployed as Lambda functions
+- **Static Hosting**: Can be deployed on S3 + CloudFront
+- **Scalable**: Modular architecture allows independent scaling
+- **Cost Optimized**: No server dependencies
+
+## 📝 Time Estimate
+
+**~8-10 hours total development time**
+
+## 🔮 Future Enhancements
+
+If I had more time, I would add:
+
+- Comprehensive testing suite
+- Error handling and validation
+- Data persistence
+- Enhanced accessibility
+- Backend integration
+- Advanced pricing features
+
+## 📄 Documentation
+
+For detailed technical documentation, see [DOCUMENTATION.md](./DOCUMENTATION.md)
+
+---
